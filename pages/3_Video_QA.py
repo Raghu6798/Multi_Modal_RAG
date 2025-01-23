@@ -131,9 +131,11 @@ if video_url and st.button("Generate Transcript"):
             st.success("Transcript fetched, embeddings updated, and indexed.")
         except Exception as e:
             st.error(f"Error fetching transcript: {e}")
+if video_url:
+    st.video(video_url)
+else:
+    st.error("Please provide a valid YouTube URL.")
 
-
-st.video(video_url)
 
 # QA Section
 if "vector_store" in st.session_state:
