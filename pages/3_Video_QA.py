@@ -14,11 +14,15 @@ from uuid import uuid4
 import whisper 
 import torch 
 import faiss
-import os 
 import torch
 from dotenv import load_dotenv
 import logging
 import asyncio
+from imageio_ffmpeg import get_ffmpeg_exe
+import os
+
+os.environ["PATH"] += os.pathsep + os.path.dirname(get_ffmpeg_exe())
+
 
 # Load environment variables
 load_dotenv()
