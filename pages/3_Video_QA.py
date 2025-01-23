@@ -88,7 +88,7 @@ Context (Video Transcript):
 
 st.logo(
     LOGO_URL_LARGE,
-    link="https://streamlit.io/gallery",
+    link="https://www.google.com/imgres?q=streamlit%20logo&imgurl=https%3A%2F%2Fraw.githubusercontent.com%2Fgithub%2Fexplore%2F968d1eb8fb6b704c6be917f0000283face4f33ee%2Ftopics%2Fstreamlit%2Fstreamlit.png&imgrefurl=https%3A%2F%2Fgithub.com%2Ftopics%2Fstreamlit%3Fl%3Dcss%26o%3Dasc%26s%3Dforks&docid=44fVXigQqxO02M&tbnid=Uwix7evaaUdheM&vet=12ahUKEwi3qcfj-ouLAxU2yzgGHb67AcIQM3oECFQQAA..i&w=288&h=288&hcb=2&itg=1&ved=2ahUKEwi3qcfj-ouLAxU2yzgGHb67AcIQM3oECFQQAA",
     icon_image=LOGO_URL_SMALL,
 )
 # Streamlit UI
