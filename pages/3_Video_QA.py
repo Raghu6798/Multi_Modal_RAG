@@ -167,7 +167,7 @@ if video_url:
 # QA Section
 if "vector_store" in st.session_state:
     def get_retrieved_context(query):
-    video_retriever = st.session_state.vector_store.as_retriever(
+        video_retriever = st.session_state.vector_store.as_retriever(
         search_type="similarity", search_kwargs={"k": 2}
     )
     
