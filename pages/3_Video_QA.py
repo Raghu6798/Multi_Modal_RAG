@@ -11,6 +11,9 @@ from langchain_google_genai import ChatGoogleGenerativeAI
 from langchain.prompts import ChatPromptTemplate
 from langchain.schema import StrOutputParser
 from uuid import uuid4
+import whisper 
+import torch 
+import tempfile
 import faiss
 import os 
 import torch
@@ -38,16 +41,16 @@ if "models" not in st.session_state:
             model="gemini-2.0-flash-exp",
             temperature=0.8,
             verbose=True,
-            api_key=st.secrets["GOOGLE_AI_STUDIO_API_KEY"],
+            api_key=os.getenv("GOOGLE_AI_STUDIO_API_KEY"),
         ),
         "Mistral": ChatMistralAI(
-            model_name="open-mistral-nemo", temperature=0.8, verbose=True,api_key=st.secrets["MISTRAL_API_KEY"]
+            model_name="open-mistral-nemo", temperature=0.8, verbose=True,api_key=os.getenv("MISTRAL_API_KEY")
         ),
         "Llama": ChatCerebras(
             model="llama-3.3-70b",
             temperature=0.8,
             verbose=True,
-            api_key=st.secrets["CEREBRAS_API_KEY"],
+            api_key=os.getenv("CEREBRAS_API_KEY"),
         ),
     }
 
@@ -86,35 +89,50 @@ if upload_option == "Upload File":
 else:
     video_url = st.text_input("Enter YouTube video URL:")
 
-# Transcription
 if video_url and st.button("Generate Transcript"):
     with st.spinner("Fetching transcript..."):
         try:
             # Load transcript using YoutubeLoader
-            loader = YoutubeLoader.from_youtube_url(
-    video_url, add_video_info=False
-)
+            loader = YoutubeLoader.from_youtube_url(video_url, add_video_info=False)
             transcript = loader.load()
             
             # Split into documents for chunking
             docs = [Document(page_content=entry.page_content) for entry in transcript]
             chunks = text_splitter.split_documents(docs)
+            st.success("Transcript fetched using YouTube API.")
+        except Exception as e:
+            st.warning(f"Error fetching transcript from YouTube API: {e}. Falling back to Whisper.")
+            
+            # Fallback to Whisper transcription
+            if upload_option == "Upload File" and video_path:
+                try:
+                    whisper_model = whisper.load_model("base")  # Or use "small", "medium", etc.
+                    result = whisper_model.transcribe(video_path)
+                    transcript_text = result["text"]
+                    
+                    # Split into documents
+                    docs = [Document(page_content=transcript_text)]
+                    chunks = text_splitter.split_documents(docs)
+                    st.success("Transcript fetched using Whisper.")
+                except Exception as whisper_error:
+                    st.error(f"Whisper transcription failed: {whisper_error}")
+            else:
+                st.error("Whisper transcription is only available for uploaded files.")
 
-            # Initialize FAISS vector store
-            if "vector_store" not in st.session_state:
-                index = faiss.IndexFlatL2(len(st.session_state.embeddings.embed_query("hello world")))
-                st.session_state.vector_store = FAISS(
-                    embedding_function=st.session_state.embeddings,
-                    index=index,
-                    docstore=InMemoryDocstore(),
-                    index_to_docstore_id={},
-                )
-
+        # Initialize FAISS vector store if transcript available
+        if "vector_store" not in st.session_state and 'chunks' in locals():
+            index = faiss.IndexFlatL2(len(st.session_state.embeddings.embed_query("hello world")))
+            st.session_state.vector_store = FAISS(
+                embedding_function=st.session_state.embeddings,
+                index=index,
+                docstore=InMemoryDocstore(),
+                index_to_docstore_id={},
+            )
+            
             ids = [str(uuid4()) for _ in range(len(chunks))]
             st.session_state.vector_store.add_documents(documents=chunks, ids=ids)
-            st.success("Transcript fetched and indexed.")
-        except Exception as e:
-            st.error(f"Error fetching transcript: {e}")
+            st.success("Transcript indexed for QA.")
+
 
 # QA Section
 if "vector_store" in st.session_state:
