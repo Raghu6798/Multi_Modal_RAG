@@ -167,12 +167,15 @@ if video_url:
 # QA Section
 if "vector_store" in st.session_state:
     def get_retrieved_context(query):
-        video_retriever = st.session_state.vector_store.as_retriever(
+    video_retriever = st.session_state.vector_store.as_retriever(
         search_type="similarity", search_kwargs={"k": 2}
     )
-        
-        retrieved_documents = video_retriever.get_relevant_documents(query)
+    
+    retrieved_documents = video_retriever.get_relevant_documents(query)
+    if isinstance(retrieved_documents, list):
         return "\n".join(doc.page_content for doc in retrieved_documents)
+    else:
+        return retrieved_documents.page_content
 
 
     user_input = st.chat_input("Ask a question about the video:")
