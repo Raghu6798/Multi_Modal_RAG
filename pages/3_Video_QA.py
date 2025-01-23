@@ -38,16 +38,16 @@ if "models" not in st.session_state:
             model="gemini-2.0-flash-exp",
             temperature=0.8,
             verbose=True,
-            api_key=os.getenv("GOOGLE_AI_STUDIO_API_KEY"),
+            api_key=st.secrets["GOOGLE_AI_STUDIO_API_KEY"],
         ),
         "Mistral": ChatMistralAI(
-            model_name="open-mistral-nemo", temperature=0.8, verbose=True,api_key=os.getenv("MISTRAL_API_KEY")
+            model_name="open-mistral-nemo", temperature=0.8, verbose=True,api_key=st.secrets["MISTRAL_API_KEY"]
         ),
         "Llama": ChatCerebras(
             model="llama-3.3-70b",
             temperature=0.8,
             verbose=True,
-            api_key=os.getenv("CEREBRAS_API_KEY"),
+            api_key=st.secrets["CEREBRAS_API_KEY"],
         ),
     }
 
