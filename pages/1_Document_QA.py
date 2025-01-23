@@ -128,3 +128,69 @@ if uploaded_doc and uploaded_doc.name.endswith(".pdf"):
 
             for message in st.session_state["messages"]:
                 st.chat_message(message["role"]).markdown(message["content"])
+
+# Process uploaded DOCX document
+if uploaded_doc and uploaded_doc.name.endswith(".docx"):
+    with st.spinner("Processing the uploaded DOCX document..."):
+        from docx import Document
+
+        # Save the uploaded file temporarily
+        temp_path = f"temp_{uuid4().hex}.docx"
+        with open(temp_path, "wb") as f:
+            f.write(uploaded_doc.read())
+
+        # Load document using python-docx
+        doc = Document(temp_path)
+        paragraphs = [p.text for p in doc.paragraphs if p.text.strip()]
+        full_text = "\n".join(paragraphs)
+
+        # Remove the temporary file
+        os.remove(temp_path)
+
+        # Create a single document object for compatibility with text_splitter
+        document = [{"page_content": full_text}]
+
+        st.success(f"Successfully loaded the content from the uploaded DOCX document.")
+
+        # Embed the document into FAISS index
+        text_splitter = RecursiveCharacterTextSplitter(separators=["\n\n"], chunk_size=1000, chunk_overlap=100)
+        chunks = text_splitter.split_documents(document)
+        embedding_dim = len(st.session_state["embeddings"].embed_query("hello world"))
+        index = faiss.IndexFlatL2(embedding_dim)
+        vector_store = FAISS(
+            embedding_function=st.session_state["embeddings"],
+            index=index,
+            docstore=InMemoryDocstore(),
+            index_to_docstore_id={},
+        )
+        ids = [str(uuid4()) for _ in range(len(chunks))]
+        vector_store.add_documents(chunks, ids=ids)
+
+        for idx, doc_id in enumerate(ids):
+            vector_store.index_to_docstore_id[idx] = doc_id
+
+        # Create retriever with the FAISS index
+        doc_retriever = vector_store.as_retriever(search_type="similarity", search_kwargs={"k": 6})
+
+        def get_retrieved_context(query):
+            retrieved_documents = doc_retriever.get_relevant_documents(query)
+            return "\n".join(doc.page_content for doc in retrieved_documents)
+
+        user_input = st.chat_input("Ask your queries about the document/documents:")
+
+        prompt_template = ChatPromptTemplate.from_messages([
+            ("system", "You are an expert in analyzing a large number of documents. Use the context: {context} to answer the query related to the document in a concise but detailed manner."),
+            ("human", "{question}")
+        ])
+
+        if user_input:
+            st.session_state["messages"].append({"role": "user", "content": user_input})
+            qa_chain = prompt_template | st.session_state["models"]["Mistral"] | StrOutputParser()
+            context = get_retrieved_context(user_input)
+            response_message = asyncio.run(async_invoke_chain(qa_chain, {"question": user_input, "context": context}))
+            st.session_state["messages"].append({"role": "assistant", "content": response_message})
+
+            for message in st.session_state["messages"]:
+                st.chat_message(message["role"]).markdown(message["content"])
+
+    
