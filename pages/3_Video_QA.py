@@ -85,8 +85,9 @@ Context (Video Transcript):
 {context}"""),
     ("user", "{question}")
 ])
-# Streamlit UI
-st.title("Video QA with LangChain 🦜🔗 & Streamlit")
+
+st.title("Video QA with LangChain 🦜🔗 & Streamlit") 
+st.logo(image=r"C:\Users\Raghu\Downloads\Gen AI Projects\image_logo.jpg",icon_image=r"C:\Users\Raghu\Downloads\Gen AI Projects\image_logo.jpg")
 
 upload_option = st.radio("Select video source:", ["Upload File", "YouTube URL"])
 video_path = None
@@ -96,12 +97,13 @@ if upload_option == "Upload File":
     uploaded_file = st.file_uploader("Upload your video file", type=["mp4", "webm", "mkv"])
     if uploaded_file:
         # Save the uploaded file to the 'Nothing' folder
-        video_path = f"./Nothing/{uploaded_file.name}"
+        video_path = f"./{uploaded_file.name}"
         with open(video_path, "wb") as f:
             f.write(uploaded_file.read())
         st.success("File uploaded successfully.")
 else:
     video_url = st.text_input("Enter YouTube video URL:")
+
 
 if video_url and st.button("Generate Transcript"):
     with st.spinner("Fetching transcript..."):
@@ -128,15 +130,40 @@ if video_url and st.button("Generate Transcript"):
             # Add the new documents to the vector store
             ids = [str(uuid4()) for _ in range(len(chunks))]
             st.session_state.vector_store.add_documents(documents=chunks, ids=ids)
-            st.success("Transcript fetched, embeddings updated, and indexed.")
+            st.success("You are ready to Ask anything about the Video")
         except Exception as e:
             st.error(f"Error fetching transcript: {e}")
+
+if video_path and st.button("Generate Transcript"):
+    with st.spinner("Transcribing video..."):
+        try:
+            # Transcribe the video using Whisper
+            model = whisper.load_model("small")
+            result = model.transcribe(video_path)
+            transcript = result["text"]
+
+            # Split into documents for chunking
+            docs = [Document(page_content=transcript)]
+            chunks = text_splitter.split_documents(docs)
+
+            # **Clear the previous vector store**
+            index = faiss.IndexFlatL2(len(st.session_state.embeddings.embed_query("hello world")))
+            st.session_state.vector_store = FAISS(
+                embedding_function=st.session_state.embeddings,
+                index=index,
+                docstore=InMemoryDocstore(),
+                index_to_docstore_id={},
+            )
+
+            # Add the new documents to the vector store
+            ids = [str(uuid4()) for _ in range(len(chunks))]
+            st.session_state.vector_store.add_documents(documents=chunks, ids=ids)
+            st.success("You are ready to Ask anything about the Video")
+        except Exception as e:
+            st.error(f"Error transcribing video: {e}")
+
 if video_url:
     st.video(video_url)
-else:
-    st.error("Please provide a valid YouTube URL.")
-
-
 # QA Section
 if "vector_store" in st.session_state:
     def get_retrieved_context(query):
