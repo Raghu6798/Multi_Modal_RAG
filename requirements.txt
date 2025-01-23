@@ -18,4 +18,4 @@ youtube-transcript-api
 unstructured 
 openpyxl
 docx
-ffmpeg-python
+imageio[ffmpeg]
