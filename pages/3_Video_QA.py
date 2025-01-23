@@ -138,7 +138,7 @@ if video_path and st.button("Generate Transcript"):
         try:
             # Transcribe the video using Whisper
             model = whisper.load_model("small")
-            device =  "gpu" if torch.cuda.is_available() else "cpu")
+            device =  "gpu" if torch.cuda.is_available() else "cpu"
             model = whisper.to(device)
             result = model.transcribe(video_path)
             transcript = result["text"]
