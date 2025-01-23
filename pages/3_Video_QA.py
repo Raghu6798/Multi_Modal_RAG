@@ -72,7 +72,7 @@ prompt = ChatPromptTemplate.from_messages([
 
 Here's how you should approach each question:
 
-1. **Direct Transcript Answer:** First, directly answer the user's question using relevant excerpts from the provided transcript. Use quotation marks to clearly indicate text taken directly from the transcript.
+1. **Introductory Overview:** First, directly answer the user's question using relevant excerpts from the provided transcript. Use quotation marks to clearly indicate text taken directly from the transcript.
 
 2. **Detailed Explanation:** Expand on the transcript's information with detailed explanations, context, and background information from your general knowledge. Explain any technical terms or concepts that might be unfamiliar to the user.
 
