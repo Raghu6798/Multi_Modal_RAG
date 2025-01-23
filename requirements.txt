@@ -15,3 +15,5 @@ pymupdf
 pydub
 moviepy
 youtube-transcript-api
+unstructured 
+openpyxl
