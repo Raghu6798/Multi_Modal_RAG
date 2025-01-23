@@ -1,3 +1,4 @@
+
 import streamlit as st
 from langchain.schema import Document
 from langchain.text_splitter import RecursiveCharacterTextSplitter
@@ -88,7 +89,7 @@ Context (Video Transcript):
 
 st.title("Video QA with LangChain 🦜🔗 & Streamlit") 
 
-
+# Video upload and processing
 upload_option = st.radio("Select video source:", ["Upload File", "YouTube URL"])
 video_path = None
 video_url = None
@@ -104,7 +105,7 @@ if upload_option == "Upload File":
 else:
     video_url = st.text_input("Enter YouTube video URL:")
 
-
+# Process video and generate transcript
 if video_url and st.button("Generate Transcript"):
     with st.spinner("Fetching transcript..."):
         try:
@@ -164,19 +165,18 @@ if video_path and st.button("Generate Transcript"):
 
 if video_url:
     st.video(video_url)
+
 # QA Section
 if "vector_store" in st.session_state:
     def get_retrieved_context(query):
         video_retriever = st.session_state.vector_store.as_retriever(
-        search_type="similarity", search_kwargs={"k": 2}
-    )
-    
-    retrieved_documents = video_retriever.get_relevant_documents(query)
-    if isinstance(retrieved_documents, list):
-        return "\n".join(doc.page_content for doc in retrieved_documents)
-    else:
-        return retrieved_documents.page_content
-
+            search_type="similarity", search_kwargs={"k": 2}
+        )
+        retrieved_documents = video_retriever.get_relevant_documents(query)
+        if isinstance(retrieved_documents, list):
+            return "\n".join(doc.page_content for doc in retrieved_documents)
+        else:
+            return retrieved_documents.page_content
 
     user_input = st.chat_input("Ask a question about the video:")
     if user_input:
