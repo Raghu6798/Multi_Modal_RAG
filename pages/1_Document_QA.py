@@ -129,8 +129,4 @@ if uploaded_doc and uploaded_doc.name.endswith(".pdf"):
 
             for message in st.session_state["messages"]:
                 st.chat_message(message["role"]).markdown(message["content"])
-
-# Process uploaded DOCX document
-if uploaded_doc and uploaded_doc.name.endswith(".docx"):
-    with st.spinner("Processing the uploaded DOCX document..."):
         
