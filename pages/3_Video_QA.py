@@ -86,7 +86,6 @@ Context (Video Transcript):
 ])
 
 st.title("Video QA with LangChain 🦜🔗 & Streamlit") 
-st.logo(image=r"C:\Users\Raghu\Downloads\Gen AI Projects\image_logo.jpg",icon_image=r"C:\Users\Raghu\Downloads\Gen AI Projects\image_logo.jpg")
 
 upload_option = st.radio("Select video source:", ["Upload File", "YouTube URL"])
 video_path = None
