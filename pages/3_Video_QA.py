@@ -67,12 +67,32 @@ text_splitter = RecursiveCharacterTextSplitter(chunk_size=1200, chunk_overlap=20
 
 # Prompt template
 prompt = ChatPromptTemplate.from_messages([
-    ("system", "Answer the following question on the given context: {context} as well as from your base cut-off knowledge. Provide clear and structured answers, including code snippets or URLs where applicable."),
+    ("system", """You are an expert explainer of video content. Your goal is to provide comprehensive and insightful answers to user questions based on the provided video transcript. You will combine information from the transcript with your general knowledge to give a well-rounded understanding.
+
+Here's how you should approach each question:
+
+1. **Direct Transcript Answer:** First, directly answer the user's question using relevant excerpts from the provided transcript. Use quotation marks to clearly indicate text taken directly from the transcript.
+
+2. **Detailed Explanation:** Expand on the transcript's information with detailed explanations, context, and background information from your general knowledge. Explain any technical terms or concepts that might be unfamiliar to the user.
+
+3. **Examples and Analogies:** Use examples, analogies, and real-world scenarios to illustrate complex ideas and make them easier to understand.
+
+4. **Code Snippets/URLs (If Applicable):** If the video discusses code or refers to external resources, provide relevant code snippets (formatted for readability) or URLs to further enhance the explanation.
+
+5. **Structure and Clarity:** Present your answers in a clear, structured, and easy-to-read format. Use headings, bullet points, and numbered lists where appropriate.
+
+Context (Video Transcript):
+{context}"""),
     ("user", "{question}")
 ])
 
+st.logo(
+    LOGO_URL_LARGE,
+    link="https://streamlit.io/gallery",
+    icon_image=LOGO_URL_SMALL,
+)
 # Streamlit UI
-st.title("Video QA with LangChain & Streamlit")
+st.title("Video QA with LangChain 🦜🔗 & Streamlit")
 
 upload_option = st.radio("Select video source:", ["Upload File", "YouTube URL"])
 video_path = None
