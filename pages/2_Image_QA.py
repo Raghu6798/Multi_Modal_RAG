@@ -90,7 +90,7 @@ image_url = st.text_input("Enter the image URL")
 image_data = None
 
 if uploaded_file:
-    st.image(uploaded_file, caption="Uploaded Image", use_column_width=True)
+    st.image(uploaded_file, caption="Uploaded Image", use_container_width=True)
     image_data = base64.b64encode(uploaded_file.read()).decode("utf-8")
 elif image_url:
     try:
