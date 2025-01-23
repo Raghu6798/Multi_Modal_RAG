@@ -1,4 +1,3 @@
-
 import streamlit as st
 from langchain.schema import Document
 from langchain.text_splitter import RecursiveCharacterTextSplitter
@@ -14,7 +13,6 @@ from langchain.schema import StrOutputParser
 from uuid import uuid4
 import whisper 
 import torch 
-import tempfile
 import faiss
 import os 
 import torch
@@ -69,10 +67,10 @@ text_splitter = RecursiveCharacterTextSplitter(chunk_size=1200, chunk_overlap=20
 # Prompt template
 prompt = ChatPromptTemplate.from_messages([
     ("system", """You are an expert explainer of video content. Your goal is to provide comprehensive and insightful answers to user questions based on the provided video transcript. You will combine information from the transcript with your general knowledge to give a well-rounded understanding.
-And also remember , ensure that you don't mention about transcript , but only the information generated from the transcript 
+
 Here's how you should approach each question:
 
-1. **Introductory Overview:** First, directly answer the user's question using relevant excerpts from the provided transcript. Use quotation marks to clearly indicate text taken directly from the transcript.
+1. **Direct Transcript Answer:** First, directly answer the user's question using relevant excerpts from the provided transcript. Use quotation marks to clearly indicate text taken directly from the transcript.
 
 2. **Detailed Explanation:** Expand on the transcript's information with detailed explanations, context, and background information from your general knowledge. Explain any technical terms or concepts that might be unfamiliar to the user.
 
@@ -88,8 +86,8 @@ Context (Video Transcript):
 ])
 
 st.title("Video QA with LangChain 🦜🔗 & Streamlit") 
+st.logo(image=r"C:\Users\Raghu\Downloads\Gen AI Projects\image_logo.jpg",icon_image=r"C:\Users\Raghu\Downloads\Gen AI Projects\image_logo.jpg")
 
-# Video upload and processing
 upload_option = st.radio("Select video source:", ["Upload File", "YouTube URL"])
 video_path = None
 video_url = None
@@ -105,7 +103,7 @@ if upload_option == "Upload File":
 else:
     video_url = st.text_input("Enter YouTube video URL:")
 
-# Process video and generate transcript
+
 if video_url and st.button("Generate Transcript"):
     with st.spinner("Fetching transcript..."):
         try:
@@ -140,6 +138,7 @@ if video_path and st.button("Generate Transcript"):
         try:
             # Transcribe the video using Whisper
             model = whisper.load_model("small")
+            model = whisper.to(device = "gpu" if torch.cuda.is_available() else "cpu")
             result = model.transcribe(video_path)
             transcript = result["text"]
 
@@ -165,18 +164,16 @@ if video_path and st.button("Generate Transcript"):
 
 if video_url:
     st.video(video_url)
-
 # QA Section
 if "vector_store" in st.session_state:
     def get_retrieved_context(query):
         video_retriever = st.session_state.vector_store.as_retriever(
-            search_type="similarity", search_kwargs={"k": 2}
-        )
+        search_type="similarity", search_kwargs={"k": 2}
+    )
+        
         retrieved_documents = video_retriever.get_relevant_documents(query)
-        if isinstance(retrieved_documents, list):
-            return "\n".join(doc.page_content for doc in retrieved_documents)
-        else:
-            return retrieved_documents.page_content
+        return "\n".join(doc.page_content for doc in retrieved_documents)
+
 
     user_input = st.chat_input("Ask a question about the video:")
     if user_input:
