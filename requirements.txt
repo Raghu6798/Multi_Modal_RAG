@@ -1,0 +1,17 @@
+streamlit
+langchain
+langchain-community
+langchain-huggingface
+langchain-cerebras
+langchain-mistralai
+langchain-google-genai
+faiss-cpu
+openai-whisper
+yt-dlp
+torch
+python-dotenv
+asyncio
+pymupdf
+pydub
+moviepy
+youtube-transcript-api
