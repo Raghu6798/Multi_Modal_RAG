@@ -97,7 +97,7 @@ elif image_url:
         with httpx.Client() as client:
             response = client.get(image_url)
             response.raise_for_status()
-            st.image(response.content, caption="Image from URL", use_column_width=True)
+            st.image(response.content, caption="Image from URL", use_container_width=True)
             image_data = base64.b64encode(response.content).decode("utf-8")
     except Exception as e:
         st.error(f"Error fetching image from URL: {e}")
