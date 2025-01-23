@@ -103,6 +103,8 @@ if upload_option == "Upload File":
 else:
     video_url = st.text_input("Enter YouTube video URL:")
 
+st.video(video_url)
+
 if video_url and st.button("Generate Transcript"):
     with st.spinner("Fetching transcript..."):
         try:
