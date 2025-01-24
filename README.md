@@ -26,7 +26,8 @@ C:
   - **Whisper**: An open-source model for automatic speech recognition (ASR) by open AI , that whenever a video files like (.mp4,.webm , .mp3 .etc ) are uploadd , they are transcribed into English Text required as a knowledge base for RAG Question Answering.
   
 - **Language Models:**
-  - **Google Gemini-2.0-flash**: A Multi-Modal model with the ability to parse multi-modal data such as complicated handwritten notes, graph plots , abstract paintings , documentations .
+  - **Google Gemini-2.0-flash**: A Multi-Modal model with the ability to parse multi-modal data such as complicated handwritten notes, graph plots , abstract paintings , documentations . ![image](https://github.com/user-attachments/assets/237ba3c0-0b1c-439b-9433-85be21a4e7fb)
+
   - **open-mistral-nemo**: Another conversational model used to generate responses from document or video context.
   - **Llama-3.3-70b**: Used to answer questions based on document or video content.
   - **sentence-transformers/all-mpnet-base-v2**: This is a sentence-transformers model: It maps sentences & paragraphs to a 384 dimensional dense vector space and can be used for tasks like clustering or semantic search.
