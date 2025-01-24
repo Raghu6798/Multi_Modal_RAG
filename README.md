@@ -21,6 +21,8 @@ C:
   - **HuggingFace Embeddings**: Used for embedding document content into vector representations for similarity-based search.
   - **FAISS**: FAISS (Facebook AI Similarity Search) is an open-source library for fast and efficient similarity search and clustering of dense vectors. Optimized for large-scale data, it supports nearest neighbor searches, GPU acceleration, and customizable indexing 
       techniques. Widely used in recommendation systems, natural language processing, and large-scale machine learning tasks.
+    ![image](https://github.com/user-attachments/assets/f292ed42-cc6b-4b15-a520-fb781dccad19)
+
   - **Whisper**: An open-source model for automatic speech recognition (ASR) by open AI , that whenever a video files like (.mp4,.webm , .mp3 .etc ) are uploadd , they are transcribed into English Text required as a knowledge base for RAG Question Answering.
   
 - **Language Models:**
