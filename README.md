@@ -42,5 +42,6 @@ This project enables document,video and image question answering using LangChain
 
 ### 1. Clone the repository:
 ```bash
-git clone <repository-url>
-cd <repository-directory>
+git clone https://github.com/Raghu6798/Multi_Modal_RAG.git
+
+```
