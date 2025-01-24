@@ -15,6 +15,8 @@ C:
 
 - **Frontend:**
   - **Streamlit**: For building the web interface that allows users to upload documents and videos, and ask questions.
+    ![image](https://github.com/user-attachments/assets/80b08df6-ed4e-497b-b910-830d02eb7302)
+
   
 - **Backend:**
   - **LangChain**: I leveraged langchain for efficient multi-modal data ingestion , retrieval , ChatModel Integrations with Cerebras , Google Gemini , Mistral AI , HuggingFaceEmbeddings and Question-Answering pipelines creating a robust , and effective Multi-modal RAG.
