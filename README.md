@@ -14,7 +14,7 @@ This project enables document,video and image question answering using LangChain
   - **Whisper**: An open-source model for automatic speech recognition (ASR), used for transcribing video content.
   
 - **Language Models:**
-  - **Google Gemini**: A conversational model for answering questions based on document or video content.
+  - **Google Gemini-2.0-flash**: A conversational model for answering questions based on document or video content.
   - **Mistral AI**: Another conversational model used to generate responses from document or video context.
   - **Cerebras Llama**: Used to answer questions based on document or video content.
   
@@ -43,5 +43,12 @@ This project enables document,video and image question answering using LangChain
 ### 1. Clone the repository:
 ```bash
 git clone https://github.com/Raghu6798/Multi_Modal_RAG.git
+```
 
+```bash
+pip install requirements.txt
+```
+
+```python
+streamlit run app.py
 ```
