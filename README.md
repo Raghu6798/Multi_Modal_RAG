@@ -44,11 +44,11 @@ This project enables document,video and image question answering using LangChain
 ```bash
 git clone https://github.com/Raghu6798/Multi_Modal_RAG.git
 ```
-
+### 2. Install all the required dependencies 
 ```bash
 pip install requirements.txt
 ```
-
+### 3. Run the streamlit web app on localhost:8501
 ```python
 streamlit run app.py
 ```
