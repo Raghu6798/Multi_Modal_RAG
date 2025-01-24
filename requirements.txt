@@ -7,7 +7,6 @@ langchain-mistralai
 langchain-google-genai
 faiss-cpu
 openai-whisper
-yt-dlp
 torch
 python-dotenv
 asyncio
