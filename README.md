@@ -8,15 +8,17 @@ This project enables document,video and image question answering using LangChain
   - **Streamlit**: For building the web interface that allows users to upload documents and videos, and ask questions.
   
 - **Backend:**
-  - **LangChain**: A framework to manage document processing, embeddings, and question answering chains.
+  - **LangChain**: I leveraged langchain for efficient multi-modal data ingestion , retrieval , ChatModel Integrations with Cerebras , Google Gemini , Mistral AI , HuggingFaceEmbeddings and Question-Answering pipelines creating a robust , and effective Multi-modal RAG.
   - **HuggingFace Embeddings**: Used for embedding document content into vector representations for similarity-based search.
-  - **FAISS**: A vector search engine used to index the document embeddings for fast retrieval.
-  - **Whisper**: An open-source model for automatic speech recognition (ASR), used for transcribing video content.
+  - **FAISS**: FAISS (Facebook AI Similarity Search) is an open-source library for fast and efficient similarity search and clustering of dense vectors. Optimized for large-scale data, it supports nearest neighbor searches, GPU acceleration, and customizable indexing 
+      techniques. Widely used in recommendation systems, natural language processing, and large-scale machine learning tasks.
+  - **Whisper**: An open-source model for automatic speech recognition (ASR) by open AI , that whenever a video files like (.mp4,.webm , .mp3 .etc ) are uploadd , they are transcribed into English Text required as a knowledge base for RAG Question Answering.
   
 - **Language Models:**
   - **Google Gemini-2.0-flash**: A Multi-Modal model with the ability to parse multi-modal data such as complicated handwritten notes, graph plots , abstract paintings , documentations .
-  - **Mistral AI**: Another conversational model used to generate responses from document or video context.
-  - **llama-3.3-70b**: Used to answer questions based on document or video content.
+  - **open-mistral-nemo**: Another conversational model used to generate responses from document or video context.
+  - **Llama-3.3-70b**: Used to answer questions based on document or video content.
+  - **sentence-transformers/all-mpnet-base-v2**: This is a sentence-transformers model: It maps sentences & paragraphs to a 384 dimensional dense vector space and can be used for tasks like clustering or semantic search.
   
 - **Other Libraries:**
   - **PyMuPDF**: For loading and processing PDF files.
