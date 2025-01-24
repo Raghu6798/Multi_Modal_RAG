@@ -11,10 +11,3 @@ torch
 python-dotenv
 asyncio
 pymupdf
-pydub
-moviepy
-youtube-transcript-api
-unstructured 
-openpyxl
-docx
-imageio[ffmpeg]
