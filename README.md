@@ -73,6 +73,9 @@ C:
 
 3. **Multi-Modal AI for Enhanced Understanding:**
    - Gemini-2.0 Flash does an in-depth image content analysis and generate contextual answers to user queries.
+   - After uploading or adding an image address from the internet , any user can ask questions related to the intricate details within the image:
+   ![Screenshot 2025-01-24 191738](https://github.com/user-attachments/assets/318c7358-aadf-48d8-97c1-a2791759ea82)
+
 
 ## Conversations from all the modalites are stored in same session state
 
