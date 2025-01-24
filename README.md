@@ -75,6 +75,7 @@ C:
 ### 1. Clone the repository:
 ```bash
 git clone https://github.com/Raghu6798/Multi_Modal_RAG.git
+cd .\Multi_Modal_RAG\
 ```
 ### 2. Install all the required dependencies 
 ```bash
