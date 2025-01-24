@@ -57,6 +57,8 @@ C:
 
 3. **Image Input Options:**
    - Users can either **upload an image file** (formats: `.jpeg`, `.jpg`, `.png`) or **provide an image URL** to analyze its content.
+     ![image](https://github.com/user-attachments/assets/bcc15a69-9580-4316-be39-7516ca4f4d14)
+
 
 
 
@@ -70,8 +72,7 @@ C:
      - **Data Visualizations**: Processes charts, graphs, and other visual data representations.
 
 3. **Multi-Modal AI for Enhanced Understanding:**
-   - Utilizes advanced AI models to deeply analyze image content and generate contextual answers to user queries.
-
+   - Gemini-2.0 Flash does an in-depth image content analysis and generate contextual answers to user queries.
 
 ## Conversations from all the modalites are stored in same session state
 
