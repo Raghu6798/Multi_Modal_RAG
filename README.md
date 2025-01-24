@@ -29,6 +29,7 @@ C:
   
 - **Language Models:**
   - **Google Gemini-2.0-flash**: A Multi-Modal model with the ability to parse multi-modal data such as complicated handwritten notes, graph plots , abstract paintings , documentations .
+
    ![image](https://github.com/user-attachments/assets/237ba3c0-0b1c-439b-9433-85be21a4e7fb)
   - **open-mistral-nemo**: Another conversational model used to generate responses from document or video context.
   - ![image](https://github.com/user-attachments/assets/8ddfcfa0-247b-4c7d-9160-7532e97920cc)
