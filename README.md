@@ -34,12 +34,7 @@ C:
      CEREBRAS_API_KEY=your_cerebras_api_key
      MISTRAL_API_KEY = your_mistral_api_key
      ```
-  
-- **Other Libraries:**
-  - **PyMuPDF**: For loading and processing PDF files.
-  - **YouTubeLoader**: For extracting transcripts from YouTube videos.
-  - **faiss**: A library by Meta AI for fast vector search and indexing.
-  - **dotenv**: For managing environment variables such as API keys.
+![image](https://github.com/user-attachments/assets/9174fce6-5995-46f4-b89b-09f99f943a9f)
 
 ## Features
 
