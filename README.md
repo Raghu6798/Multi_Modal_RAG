@@ -18,6 +18,8 @@ C:
   
 - **Backend:**
   - **LangChain**: I leveraged langchain for efficient multi-modal data ingestion , retrieval , ChatModel Integrations with Cerebras , Google Gemini , Mistral AI , HuggingFaceEmbeddings and Question-Answering pipelines creating a robust , and effective Multi-modal RAG.
+    ![image](https://github.com/user-attachments/assets/a9cb9e5d-7e6e-4837-9603-ef2fea2ea69a)
+
   - **HuggingFace Embeddings**: Used for embedding document content into vector representations for similarity-based search.
   - **FAISS**: FAISS (Facebook AI Similarity Search) is an open-source library for fast and efficient similarity search and clustering of dense vectors. Optimized for large-scale data, it supports nearest neighbor searches, GPU acceleration, and customizable indexing 
       techniques. Widely used in recommendation systems, natural language processing, and large-scale machine learning tasks.
