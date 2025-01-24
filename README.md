@@ -28,6 +28,12 @@ C:
   - **open-mistral-nemo**: Another conversational model used to generate responses from document or video context.
   - **Llama-3.3-70b**: Used to answer questions based on document or video content.
   - **sentence-transformers/all-mpnet-base-v2**: This is a sentence-transformers model: It maps sentences & paragraphs to a 384 dimensional dense vector space and can be used for tasks like clustering or semantic search.
+ 
+     ```plaintext
+     GOOGLE_AI_STUDIO_API_KEY=your_google_ai_studio_api_key
+     CEREBRAS_API_KEY=your_cerebras_api_key
+     MISTRAL_API_KEY = your_mistral_api_key
+     ```
   
 - **Other Libraries:**
   - **PyMuPDF**: For loading and processing PDF files.
@@ -48,6 +54,21 @@ C:
    - Video transcriptions are generated using Whisper.
    - Transcripts are processed and embedded similarly to documents.
    - Users can ask questions related to the video, and responses are generated based on the transcript content.
+
+3. **Image Input Options:**
+   - Users can either **upload an image file** (formats: `.jpeg`, `.jpg`, `.png`) or **provide an image URL** to analyze its content.
+
+2. **Versatile Image Analysis:**
+   - Supports a wide range of image types, including:
+     - **General Imagery**: Objects, people, and natural scenes.
+     - **Handwritten Notes**: Analyzes and interprets handwritten content.
+     - **Research Work and Academic Papers**: Extracts insights from complex diagrams, graphs, and text-based images.
+     - **Medical Images**: Handles X-Rays, MRIs, and other medical imaging for content analysis.
+     - **Data Visualizations**: Processes charts, graphs, and other visual data representations.
+
+3. **Multi-Modal AI for Enhanced Understanding:**
+   - Utilizes advanced AI models to deeply analyze image content and generate contextual answers to user queries.
+
 
 ## How to Run
 
