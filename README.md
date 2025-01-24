@@ -46,12 +46,16 @@ C:
 
 2. **Video Question Answering:**
    - Upload videos (MP4, MOV, AVI) or provide a YouTube URL.
+   - ![Screenshot 2025-01-24 181657](https://github.com/user-attachments/assets/2f64110f-4874-42e9-85b6-1a6a041de284)
    - Video transcriptions are generated using Whisper.
    - Transcripts are processed and embedded similarly to documents.
    - Users can ask questions related to the video, and responses are generated based on the transcript content.
 
 3. **Image Input Options:**
    - Users can either **upload an image file** (formats: `.jpeg`, `.jpg`, `.png`) or **provide an image URL** to analyze its content.
+
+
+
 
 2. **Versatile Image Analysis:**
    - Supports a wide range of image types, including:
@@ -64,6 +68,8 @@ C:
 3. **Multi-Modal AI for Enhanced Understanding:**
    - Utilizes advanced AI models to deeply analyze image content and generate contextual answers to user queries.
 
+
+## Conversations from all the modalites are stored in same session state
 
 ## How to Run
 
