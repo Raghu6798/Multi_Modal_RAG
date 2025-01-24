@@ -24,8 +24,7 @@ C:
     ![image](https://github.com/user-attachments/assets/f292ed42-cc6b-4b15-a520-fb781dccad19)
 
   - **Whisper**: An open-source model for automatic speech recognition (ASR) by open AI , that whenever a video files like (.mp4,.webm , .mp3 .etc ) are uploadd , they are transcribed into English Text required as a knowledge base for RAG Question Answering.
-  - ![Uploading image.png…]()
-
+  -![image](https://github.com/user-attachments/assets/02a75316-7139-4442-9719-b84f6300b467)
   
 - **Language Models:**
   - **Google Gemini-2.0-flash**: A Multi-Modal model with the ability to parse multi-modal data such as complicated handwritten notes, graph plots , abstract paintings , documentations .
