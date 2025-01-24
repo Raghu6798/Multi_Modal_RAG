@@ -50,6 +50,8 @@ C:
    - Video transcriptions are generated using Whisper.
    - Transcripts are processed and embedded similarly to documents.
    - Users can ask questions related to the video, and responses are generated based on the transcript content.
+   - ![image](https://github.com/user-attachments/assets/91859835-60f1-41e8-a97b-05e19cec5d0a)
+
 
 3. **Image Input Options:**
    - Users can either **upload an image file** (formats: `.jpeg`, `.jpg`, `.png`) or **provide an image URL** to analyze its content.
