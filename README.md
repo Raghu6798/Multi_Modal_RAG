@@ -49,6 +49,8 @@ C:
    - ![Screenshot 2025-01-24 181657](https://github.com/user-attachments/assets/2f64110f-4874-42e9-85b6-1a6a041de284)
    - Video transcriptions are generated using Whisper.
    - Transcripts are processed and embedded similarly to documents.
+   - ![Screenshot 2025-01-24 191312](https://github.com/user-attachments/assets/45c22aed-9064-4511-8946-a08710073fd5)
+
    - Users can ask questions related to the video, and responses are generated based on the transcript content.
    - ![image](https://github.com/user-attachments/assets/91859835-60f1-41e8-a97b-05e19cec5d0a)
 
