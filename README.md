@@ -1,6 +1,6 @@
 # Multi-Modal Question Answering with LangChain🦜🔗  & Streamlit
 
-This project enables document and video question answering using LangChain and Streamlit. Users can upload PDF, DOCX files, or YouTube videos, and interact with the content by querying specific information. The project utilizes advanced language models to process documents, transcribe videos, and answer questions based on the content.
+This project enables document,video and image question answering using LangChain and Streamlit. Users can upload PDF, DOCX files, or YouTube videos, and interact with the content by querying specific information. The project utilizes advanced language models to process documents, transcribe videos, and answer questions based on the content.
 
 ## Tech Stack
 
