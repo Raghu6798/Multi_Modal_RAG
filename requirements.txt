@@ -11,3 +11,4 @@ torch
 python-dotenv
 asyncio
 pymupdf
+sentence-transformers
