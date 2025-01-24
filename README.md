@@ -24,13 +24,19 @@ C:
     ![image](https://github.com/user-attachments/assets/f292ed42-cc6b-4b15-a520-fb781dccad19)
 
   - **Whisper**: An open-source model for automatic speech recognition (ASR) by open AI , that whenever a video files like (.mp4,.webm , .mp3 .etc ) are uploadd , they are transcribed into English Text required as a knowledge base for RAG Question Answering.
+  - ![Uploading image.png…]()
+
   
 - **Language Models:**
-  - **Google Gemini-2.0-flash**: A Multi-Modal model with the ability to parse multi-modal data such as complicated handwritten notes, graph plots , abstract paintings , documentations . ![image](https://github.com/user-attachments/assets/237ba3c0-0b1c-439b-9433-85be21a4e7fb)
-
+  - **Google Gemini-2.0-flash**: A Multi-Modal model with the ability to parse multi-modal data such as complicated handwritten notes, graph plots , abstract paintings , documentations .
+   ![image](https://github.com/user-attachments/assets/237ba3c0-0b1c-439b-9433-85be21a4e7fb)
   - **open-mistral-nemo**: Another conversational model used to generate responses from document or video context.
+  - ![image](https://github.com/user-attachments/assets/8ddfcfa0-247b-4c7d-9160-7532e97920cc)
   - **Llama-3.3-70b**: Used to answer questions based on document or video content.
+  - ![image](https://github.com/user-attachments/assets/a9b35ce1-777e-4821-b22d-9bdfd20396a7)
   - **sentence-transformers/all-mpnet-base-v2**: This is a sentence-transformers model: It maps sentences & paragraphs to a 384 dimensional dense vector space and can be used for tasks like clustering or semantic search.
+  - ![image](https://github.com/user-attachments/assets/37d2a86e-7c4a-4e38-8264-a783d7843b52)
+
  
      ```plaintext
      GOOGLE_AI_STUDIO_API_KEY=your_google_ai_studio_api_key
