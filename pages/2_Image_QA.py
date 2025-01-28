@@ -10,6 +10,7 @@ from langchain_mistralai import ChatMistralAI
 from langchain_google_genai import ChatGoogleGenerativeAI
 from langchain.prompts import ChatPromptTemplate
 from langchain.schema import StrOutputParser
+from langchain_groq import ChatGroq
 from uuid import uuid4
 import faiss
 import os
@@ -32,14 +33,21 @@ async def async_invoke_chain(chain, input_data):
 # Initialize session state for messages and models
 if "messages" not in st.session_state:
     st.session_state.messages = []
-
 if "models" not in st.session_state:
-    st.session_state.models = {
+    st.session_state["models"] = {
         "Gemini": ChatGoogleGenerativeAI(
             model="gemini-2.0-flash-exp",
             temperature=0.8,
             verbose=True,
             api_key=os.getenv("GOOGLE_AI_STUDIO_API_KEY")
+        ),
+        "Deepseek-R1-distill-llama-70b": ChatGroq(
+            model="deepseek-r1-distill-llama-70b",
+            temperature=0.8,
+            max_tokens=None,
+            timeout=None,
+            max_retries=2,
+            api_key=os.getenv("GROQ_API_KEY"),
         ),
         "Mistral": ChatMistralAI(
             model_name="open-mistral-nemo",
@@ -90,14 +98,14 @@ image_url = st.text_input("Enter the image URL")
 image_data = None
 
 if uploaded_file:
-    st.image(uploaded_file, caption="Uploaded Image", use_column_width=True)
+    st.image(uploaded_file, caption="Uploaded Image", use_container_width=True)
     image_data = base64.b64encode(uploaded_file.read()).decode("utf-8")
 elif image_url:
     try:
         with httpx.Client() as client:
             response = client.get(image_url)
             response.raise_for_status()
-            st.image(response.content, caption="Image from URL", use_column_width=True)
+            st.image(response.content, caption="Image from URL", use_container_width=True)
             image_data = base64.b64encode(response.content).decode("utf-8")
     except Exception as e:
         st.error(f"Error fetching image from URL: {e}")
@@ -147,12 +155,12 @@ if image_data:
     user_input = st.chat_input("Ask a question about the image:")
 
     prompt = ChatPromptTemplate.from_messages([(
-            "system", "You are an expert in analyzing images. Use the context: {context} to answer the query."
+            "system", "You are an expert image analyst trained to detect and explain the differences between real and AI-generated images. Your analysis must be thorough, highlighting patterns, textures, and anomalies unique to each category.This is the data regarding the image {context} , use it to answer the query."
         ), ("human", "{question}")])
 
     if user_input:
         st.session_state.messages.append({"role": "user", "content": user_input})
-        qa_chain = prompt | st.session_state.models["Mistral"] | StrOutputParser()
+        qa_chain = prompt | st.session_state.models["Deepseek-R1-distill-llama-70b"] | StrOutputParser()
         context = get_retrieved_context(user_input)
         response_message = asyncio.run(async_invoke_chain(qa_chain, {"question": user_input, "context": context}))
         st.session_state.messages.append({"role": "assistant", "content": response_message})
