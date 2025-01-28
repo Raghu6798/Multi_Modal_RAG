@@ -38,6 +38,8 @@ C:
   - ![image](https://github.com/user-attachments/assets/8ddfcfa0-247b-4c7d-9160-7532e97920cc)
   - **Llama-3.3-70b**: Used to answer questions based on document or video content.
   - ![image](https://github.com/user-attachments/assets/a9b35ce1-777e-4821-b22d-9bdfd20396a7)
+  - **Deepseek-r1-distill-llama-3.3-70b** : Used to perform complex reasoning and provide a comprehensive detailed answer :
+    ![image](https://github.com/user-attachments/assets/cf6b9d58-221d-4730-a74d-a0fbb654941f)
   - **sentence-transformers/all-mpnet-base-v2**: This is a sentence-transformers model: It maps sentences & paragraphs to a 384 dimensional dense vector space and can be used for tasks like clustering or semantic search.
   - ![image](https://github.com/user-attachments/assets/37d2a86e-7c4a-4e38-8264-a783d7843b52)
 
