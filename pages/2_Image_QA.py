@@ -36,7 +36,7 @@ if "messages" not in st.session_state:
 if "models" not in st.session_state:
     st.session_state["models"] = {
         "Gemini": ChatGoogleGenerativeAI(
-            model="gemini-2.0-flash-exp",
+            model="gemini-2.0-flash",
             temperature=0.8,
             verbose=True,
             api_key=os.getenv("GOOGLE_AI_STUDIO_API_KEY")
